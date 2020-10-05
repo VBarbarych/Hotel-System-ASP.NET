@@ -1,0 +1,76 @@
+﻿@model IEnumerable<HotelManagementSystem.Models.RoomType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Room Categories</h1>
+
+<div style="margin-top: 25px; margin-bottom: 25px">
+    <a asp-action="Create" type="button" class="btn btn-outline-primary">Create New</a>
+</div>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="@item.ImageUrl" alt="RoomTypeImage" height="225">@*<title>Placeholder</title><rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>*@
+                        <div class="card-body">
+                            <p class="card-text">@item.Description.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group align-items-center">
+                                    <a type="button" class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                    <a type="button" class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                    <a type="button" class="btn btn-sm btn-outline-secondary" asp-action="Delete" asp-route-id="@item.Id">Details</a><!--data-roomType-id="@item.Id" data-toggle="modal" data-target="#DeleteModal">Delete</a>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteModal" role="dialog">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Room Categories?</h4>
+            </div>
+            <div class="modal-body">
+                <p id="DeleteConfirmation"></p>
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" name="id" value="" />
+                    <input type="submit" value="Delete" class="btn btn-success" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+
+    
+    <script>
+        
+        $(document).ready(function () {
+            $('#DeleteModal').on('show.bs.modal', function (e) {
+
+                var roomTypeID = $(e.relatedTarget).data('roomType-id');
+                var deleteMessage = "If you delete this room categories you also delete all room that have relations with him.";
+                $('#DeleteConfirmation').html(deleteMessage);
+                $(e.currentTarget).find('input[name="id"]').val(roomTypeID);
+            });
+        });
+    </script>
+}

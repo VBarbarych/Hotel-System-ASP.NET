@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - HotelManagementSystem</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sticky-footer/">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+    <!-- Bootstrap core CSS -->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="~/lib/bootstrap/dist/js/bootstrap.js" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link href="~/css/datatables/datatables.css" rel="stylesheet" />
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /*media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }*/
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="~/Content/dashboard.css" rel="stylesheet">
+    <link href="~/Content/sticky-footer.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#"><i class="fas fa-hotel" style="padding-right:10px"></i>VBarbarych</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Sign out</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="sidebar-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Rooms" asp-action="Index">
+                                <i class="fas fa-chalkboard"></i>
+                                Rooms <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="RoomTypes" asp-action="Index">
+                                <i class="fas fa-money-check" style="width:20px; height:20px"></i>
+                                Room Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="RoomBookings" asp-action="Index">
+                                <i class="fas fa-paste" style="width:20px; height:20px"></i>
+                                Bookings
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+            </nav>
+        </div>
+
+    </div>
+    <div class="container">
+        <main role="main" style="margin-left: 100px; margin-top: 30px">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer mt-auto py-3">
+        <div class="container" id="foot">
+            <span class="text-muted">
+                &copy; 2020 - VBarbarych-HotelManagementSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </span>
+        </div>
+    </footer>
+    @*<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+
+    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/plugins.js"></script>*@
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

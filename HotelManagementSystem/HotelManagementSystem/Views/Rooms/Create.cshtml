@@ -1,0 +1,134 @@
+﻿@model HotelManagementSystem.Models.Room
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Room</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Number" class="control-label"></label>
+                <input asp-for="Number" class="form-control" />
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomTypeId" class="control-label"></label>
+                <select asp-for="RoomTypeId" class="form-control" asp-items="ViewBag.RoomTypeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingStatusId" class="control-label"></label>
+                <select asp-for="BookingStatusId" class="form-control" asp-items="ViewBag.BookingStatusId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacity" class="control-label"></label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label>Upload Image(s):</label>
+                <input type="file" multiple class="form-control" name="Files" />
+            </div>
+
+            <div>
+
+                @if (ViewBag.AddedImages != null)
+                {
+                    @foreach (var item in ViewBag.AddedImages as List<string>)
+                    {
+                        <div class="alert alert-success">
+                            <strong>@item</strong>
+                        </div>
+                    }
+
+                }
+
+                @if (ViewBag.UploadErrors != null)
+                {
+                    foreach (var item in ViewBag.UploadErrors as List<string>)
+                    {
+                        <div class="alert alert-danger">
+                            <strong>@item</strong>
+                        </div>
+                    }
+
+                }
+                @*<a asp-action="Index">Back to List</a>*@
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<h4>Image</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label>Upload Image(s):</label>
+                <input type="file" multiple class="form-control" name="Files" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>*@
+
+
+@*<div>
+
+    @if (ViewBag.AddedImages != null)
+    {
+        @foreach (var item in ViewBag.AddedImages as List<string>)
+        {
+            <div class="alert alert-success">
+                <strong>@item</strong>
+            </div>
+        }
+
+    }
+
+    @if (ViewBag.UploadErrors != null)
+    {
+        foreach (var item in ViewBag.UploadErrors as List<string>)
+        {
+            <div class="alert alert-danger">
+                <strong>@item</strong>
+            </div>
+        }
+
+    }
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

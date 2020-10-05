@@ -1,0 +1,204 @@
+﻿@model HotelManagementSystem.ViewModels.RoomBookingsListingModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Booking</h1>
+
+<div style="margin-top: 25px; margin-bottom: 25px">
+    <a asp-action="Create" type="button" class="btn btn-outline-primary">New Booking</a>
+</div>
+
+
+<div class="container-padding">
+    <div class="row">
+        <!-- Start Panel -->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body table-responsive">
+                    <table id="example0" class="table-bordered display">
+                        <thead>
+                            <tr>
+                                <th>Room Number</th>
+                                <th>BookingFrom</th>
+                                <th>BookingTo</th>
+                                <th>NoOfMembers</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Total Days</th>
+                                <th>Total Pays</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.RoomBookingsList)
+                            {
+                                @if (item.BookingTo < DateTime.Now)
+                                {
+                                    <tr style="background-color: indianred">
+                                        <td style="background-color: indianred">
+                                            @Html.DisplayFor(modelItem => item.RoomNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BookingFrom)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BookingTo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NoOfMembers)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerPhone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerEmail)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalDays)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalPay)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a><!--data-roomBooking-id="@item.Id" data-toggle="modal" data-target="#DeleteModal">Delete</a>-->
+                                        </td>
+                                    </tr>
+                                }
+                                else if (item.BookingTo >= DateTime.Now && item.BookingFrom <= DateTime.Now)
+                                {
+                                    <tr style="background-color: greenyellow">
+                                        <td style="background-color: greenyellow">
+                                            @Html.DisplayFor(modelItem => item.RoomNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BookingFrom)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BookingTo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NoOfMembers)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerPhone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerEmail)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalDays)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalPay)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a><!--data-roomBooking-id="@item.Id" data-toggle="modal" data-target="#DeleteModal">Delete</a>-->
+                                        </td>
+                                    </tr>
+                                }
+                                else if (item.BookingFrom >= DateTime.Now)
+                                {
+                                    <tr style="background-color: yellow">
+                                        <td style="background-color: yellow">
+                                            @Html.DisplayFor(modelItem => item.RoomNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BookingFrom)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BookingTo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NoOfMembers)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerPhone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerEmail)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalDays)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TotalPay)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a><!--data-roomBooking-id="@item.Id" data-toggle="modal" data-target="#DeleteModal">Delete</a>-->
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Room Booking?</h4>
+            </div>
+            <div class="modal-body">
+                <p id="DeleteConfirmation"></p>
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" name="id" value="" />
+                    <input type="submit" value="Delete" class="btn btn-success" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/Scripts/datatables/datatables.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#example0').DataTable();
+        });
+    </script>
+
+    <script>
+        $('#DeleteModal').on('show.bs.modal', function (e) {
+
+            //get data-id attribute of the clicked element
+            var roomBookingID = $(e.relatedTarget).data('roomBooking-id');
+            //var roomNumber = $(e.relatedTarget).data('room-number');
+            var deleteMessage = "Are you sure you want to delete booking?";
+            $('#DeleteConfirmation').html(deleteMessage);
+            $(e.currentTarget).find('input[name="id"]').val(roomBookingID);
+        });
+    </script>
+}

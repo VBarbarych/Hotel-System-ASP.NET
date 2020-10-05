@@ -1,0 +1,160 @@
+﻿@model HotelManagementSystem.ViewModels.RoomsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Rooms</h1>
+
+<div style="margin-top: 25px; margin-bottom: 25px">
+    <a asp-action="Create" type="button" class="btn btn-outline-primary">Create New</a>
+</div>
+
+<div class="container-padding">
+    <div class="row">
+        <!-- Start Panel -->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body table-responsive">
+                    <table id="example0" class="table-bordered display">
+                        <thead>
+                            <tr>
+                                <th>Room Number</th>
+                                <th>Room Price</th>
+                                <th>Booking Status</th>
+                                <th>Room Description</th>
+                                <th>Room Capacity</th>
+                                <th>Room Type</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Rooms)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Number)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.BookingStatus.Status)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Capacity)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RoomType.Type)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                        @{
+                                            if (item.BookingStatus.Id == 1)
+                                            {
+                                                <a asp-action="Create" asp-controller="RoomBookings" asp-route-roomID="@item.Id">Book |</a>
+                                            }
+                                            else
+                                            {
+                                                <span>Booked |</span>
+
+                                            }
+                                        }
+                                        <a asp-action="Delete" data-room-id="@item.Id" data-room-number="@item.Number" data-toggle="modal" data-target="#DeleteModal">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeleteModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Room?</h4>
+            </div>
+            <div class="modal-body">
+                <p id="DeleteConfirmation"></p>
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" name="id" value="" />
+                    <input type="submit" value="Delete" class="btn btn-success" />
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+
+    <script src="~/Scripts/datatables/datatables.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#example0').DataTable();
+        });
+    </script>
+    <script>
+        //$(document).ready(function () {
+        //    var table = $('#example').DataTable({
+        //        "columnDefs": [
+        //            { "visible": false, "targets": 2 }
+        //        ],
+        //        "order": [[2, 'asc']],
+        //        "displayLength": 25,
+        //        "drawCallback": function (settings) {
+        //            var api = this.api();
+        //            var rows = api.rows({ page: 'current' }).nodes();
+        //            var last = null;
+
+        //            api.column(2, { page: 'current' }).data().each(function (group, i) {
+        //                if (last !== group) {
+        //                    $(rows).eq(i).before(
+        //                        '<tr class="group"><td colspan="5">' + group + '</td></tr>'
+        //                    );
+
+        //                    last = group;
+        //                }
+        //            });
+        //        }
+        //    });
+
+        //    // Order by the grouping
+        //    $('#example tbody').on('click', 'tr.group', function () {
+        //        var currentOrder = table.order()[0];
+        //        if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+        //            table.order([2, 'desc']).draw();
+        //        }
+        //        else {
+        //            table.order([2, 'asc']).draw();
+        //        }
+        //    });
+        //});
+
+        $('#DeleteModal').on('show.bs.modal', function (e) {
+
+            //get data-id attribute of the clicked element
+            var roomID = $(e.relatedTarget).data('room-id');
+            var roomNumber = $(e.relatedTarget).data('room-number');
+            var deleteMessage = "Are you sure you want to delete room with room no: " + roomNumber + "?";
+            $('#DeleteConfirmation').html(deleteMessage);
+            $(e.currentTarget).find('input[name="id"]').val(roomID);
+        });
+    </script>
+}
