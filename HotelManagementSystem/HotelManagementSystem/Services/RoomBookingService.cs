@@ -78,7 +78,6 @@ namespace HotelManagementSystem.Services
             var item = _context.Rooms.Include(x => x.RoomType).Include(x => x.BookingStatus).Where(x => x.Id == roomId).FirstOrDefault();
 
             item.BookingStatusId = 1;
-            //_context.Update(item);
             await _context.SaveChangesAsync();
         }
 
@@ -87,23 +86,7 @@ namespace HotelManagementSystem.Services
             var item = _context.Rooms.Include(x => x.RoomType).Include(x => x.BookingStatus).Where(x => x.Id == roomId).FirstOrDefault();
 
             item.BookingStatusId = statusId;
-            //_context.Update(item);
             await _context.SaveChangesAsync();
         }
-
-        //public void UpdateStatusCreate()
-        //{
-        //    //List<Room> reservedRoom = (List<Room>)_context.Rooms.Where(x => x.BookingStatusId == 2);
-        //    var reservedBookings = _context.RoomBookings.Where(x => x.RoomId == x.Room.Id).Where(x => x.Room.BookingStatusId == 2);
-        //    foreach (var booking in reservedBookings)
-        //    {
-        //        if (booking.BookingFrom <= DateTime.Now)
-        //        {
-        //            var room = _context.Rooms.Where(x => x.Id == booking.RoomId);
-        //            room.FirstOrDefault().BookingStatusId = 3;
-        //        }
-        //    }
-
-        //}
     }
 }

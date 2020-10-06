@@ -27,6 +27,7 @@ namespace HotelManagementSystem.Services
             _hostingEnvironment = hostingEnvironment;
         }
 
+        //Upload images from directory
         public async Task<AddImagesViewModel> AddImagesAsync(List<IFormFile> files, int Id)
         {
             var UploadErrors = new List<string>();
@@ -50,16 +51,6 @@ namespace HotelManagementSystem.Services
                     var ExistingFilePath = Path.Combine(imagesFolder, formFile.FileName);
                     var FileNameWithoutExtension = Path.GetFileNameWithoutExtension(formFile.FileName);
 
-                    //for (var count = 1; File.Exists(ExistingFilePath) == true; count++)
-                    //{
-                    //    FileNameWithoutExtension = FileNameWithoutExtension + " (" + count.ToString() + ")";
-
-                    //    var UpdatedFileName = FileNameWithoutExtension + _ext;
-                    //    var UpdatedFilePath = Path.Combine(imagesFolder, UpdatedFileName);
-                    //    ExistingFilePath = UpdatedFilePath;
-
-                    //}
-
                     NewFileName = FileNameWithoutExtension + _ext;
                     var filePath = Path.Combine(imagesFolder, NewFileName);
 
@@ -69,7 +60,6 @@ namespace HotelManagementSystem.Services
                     }
                     var image = new Image
                     {
-                        //Id = Guid.NewGuid(),
                         Name = NewFileName,
                         Size = ByteSize.FromBytes(formFile.Length).ToString(),
                         ImageUrl = "~/images/" + NewFileName,
@@ -106,8 +96,6 @@ namespace HotelManagementSystem.Services
                 images.Add(Image);
             }
 
-
-
             return images;
         }
 
@@ -116,8 +104,6 @@ namespace HotelManagementSystem.Services
             var PreviouslySelectedImages = _context.Images.Where(x => x.RoomId == room.Id);
             _context.Images.RemoveRange(PreviouslySelectedImages);
             _context.SaveChanges();
-
-
         }
     }
 }

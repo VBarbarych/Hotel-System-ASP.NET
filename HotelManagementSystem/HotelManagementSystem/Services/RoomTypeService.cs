@@ -63,6 +63,7 @@ namespace HotelManagementSystem.Services
             return await DbSet.Where(expression).ToArrayAsync();
         }
 
+        //Upload images from directory
         public RoomType GetRoomTypeImages(List<IFormFile> files, RoomType roomType)
         {
             var UploadErrors = new List<string>();
@@ -87,16 +88,6 @@ namespace HotelManagementSystem.Services
                     var ExistingFilePath = Path.Combine(imagesFolder, formFile.FileName);
                     var FileNameWithoutExtension = Path.GetFileNameWithoutExtension(formFile.FileName);
 
-                    //for (var count = 1; File.Exists(ExistingFilePath) == true; count++)
-                    //{
-                    //    FileNameWithoutExtension = FileNameWithoutExtension + " (" + count.ToString() + ")";
-
-                    //    var UpdatedFileName = FileNameWithoutExtension + _ext;
-                    //    var UpdatedFilePath = Path.Combine(imagesFolder, UpdatedFileName);
-                    //    ExistingFilePath = UpdatedFilePath;
-
-                    //}
-
                     NewFileName = FileNameWithoutExtension + _ext;
                     var filePath = Path.Combine(imagesFolder, NewFileName);
 
@@ -118,12 +109,6 @@ namespace HotelManagementSystem.Services
                     AddedImages.Add(imageUrl);
 
                 }
-                //else
-                //{
-                //    UploadErrors.Add(formFile.FileName + " Size is not Valid. -->(" + ByteSize.FromBytes(formFile.Length).ToString() + ")... Upload a file less than 1MB");
-                //}
-                //_context.Update(roomType);
-                //_context.SaveChanges();
             }
 
             return roomTypeWithImage;

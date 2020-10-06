@@ -33,12 +33,7 @@ namespace HotelManagementSystem.Services
 
         void UpdateStatusCreate();
 
-        Task<AddImagesViewModel> AddImagesAsync(List<IFormFile> files, int Id);
-
-        Task<IEnumerable<Image>> GetRoomImagesAsync(Room room);
-
         Room GetAllRoomsWithImage(int id);
 
-        Task UpdateRoomImagesList(Room room);
     }
 }
