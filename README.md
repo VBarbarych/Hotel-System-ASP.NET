@@ -8,14 +8,14 @@ CRUD проект для керування замовлень кімнат в �
 В даному проекті ми можемо робити:
  *CRUD операції контролера Room. В кімнати є 3 статуса: Free, Occupied, Reserved
 
-![ScreenShot](Hotel-System-ASP.NET/HotelManagementSystem/HotelManagementSystem/wwwroot/SiteView/RoomView.jpg)
+![RoomView](https://user-images.githubusercontent.com/37077122/95252267-6f5b5200-0825-11eb-9210-1abfb323c350.png)
 
-![ScreenShot](https://github.com/VBarbarych/Hotel-System-ASP.NET/tree/main/HotelManagementSystem/HotelManagementSystem/wwwroot/SiteView/RoomDetailsView.jpg)
+![RoomDetailsView](https://user-images.githubusercontent.com/37077122/95252465-afbad000-0825-11eb-8887-6e6d583e550e.png)
 
  *CRUD операції контролера RoomType
 
-![ScreenShot](https://raw.githubusercontent.com/VBarbarych/Hotel-System-ASP.NET/main/HotelManagementSystem/HotelManagementSystem/wwwroot/SiteView/RoomCategories.jpg)
+![RoomTypeView](https://user-images.githubusercontent.com/37077122/95252287-77b38d00-0825-11eb-9b13-f5a3502cba43.png)
 
  *CRUD операції контролера RoomBooking(зелений колір: кімната зайнята, жовтий - зарезервована, червоний -   термін замовлення пройшов)
 
-![ScreenShot](https://raw.githubusercontent.com/VBarbarych/Hotel-System-ASP.NET/main/Hotel-System-ASP.NET/HotelManagementSystem/HotelManagementSystem/wwwroot/SiteView/BookingView.jpg "RoomBooking")
+![RoomBookingView](https://user-images.githubusercontent.com/37077122/95252486-b5181a80-0825-11eb-9620-bdfea65b8a98.png)
