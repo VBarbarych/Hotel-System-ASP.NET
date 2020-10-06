@@ -18,4 +18,4 @@ CRUD проект для керування замовлень кімнат в �
 
  *CRUD операції контролера RoomBooking(зелений колір: кімната зайнята, жовтий - зарезервована, червоний -   термін замовлення пройшов)
 
-![ScreenShot](master/Hotel-System-ASP.NET/HotelManagementSystem/HotelManagementSystem/wwwroot/SiteView/BookingView.jpg)
+![ScreenShot](https://raw.githubusercontent.com/VBarbarych/Hotel-System-ASP.NET/main/Hotel-System-ASP.NET/HotelManagementSystem/HotelManagementSystem/wwwroot/SiteView/BookingView.jpg "RoomBooking")
